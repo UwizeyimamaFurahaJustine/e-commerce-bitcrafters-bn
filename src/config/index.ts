@@ -46,4 +46,6 @@ export const MOMO_URL =  process.env.MOMO_URL
 export const MOMO_SUBSCRIPTION_KEY =  process.env.MOMO_SUBSCRIPTION_KEY
 export const MOMO_TARGET_ENV  =  process.env.MOMO_TARGET_ENV 
 export const MOMO_CALLBACK_URL  =  process.env.MOMO_CALLBACK_URL 
+export const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY
+export const STRIPE_WEBHOOK_SECRET = process.env.STRIPE_WEBHOOK_SECRET
 

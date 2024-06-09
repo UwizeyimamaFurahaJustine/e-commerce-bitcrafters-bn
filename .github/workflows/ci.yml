@@ -32,6 +32,7 @@ env:
   CALLBACK_URL: ${{ secrets.CALLBACK_URL}}
   PASSWORD_EXPIRATION_TIME: ${{secrets.PASSWORD_EXPIRATION_TIME}}
   URL: ${{ secrets.URL}}
+  STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY}}
 
 
 jobs:

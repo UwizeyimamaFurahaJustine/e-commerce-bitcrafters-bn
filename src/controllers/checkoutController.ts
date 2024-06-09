@@ -78,7 +78,7 @@ export default class CheckoutController {
         status: OrderStatus.PENDING,
         deliveryInfo,
         paymentInfo,
-        orderNumber
+        orderNumber: `ECB${Math.floor(100000 + Math.random() * 900000)}`,
       })
       await clearCart(cart.id)
       eventEmitter.emit('order:created', { user, order })

@@ -31,8 +31,10 @@ import registerSocketEvents from './src/utils/socketEvents'
 import socketAuthMiddleware from './src/middlewares/socketMiddleware'
 import productExpiryCron from './src/controllers/productExpiryCronJob'
 import registerChatNamespace from './src/utils/chatNamespace'
-
+import stripeRoute from './src/routes/stripeRoute'
+import paymentRoute from './src/routes/paymentStripeRoute'
 import { passwordExpiryCron } from './src/utils/passwordUpdateEvent'
+
 dotenv.config()
 
 const app: Application = express()
@@ -44,11 +46,13 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs))
 app.use(cors({ credentials: true }))
 app.use(compression())
 app.use(bodyParser.json())
+app.use('/stripe-webhook', express.raw({type: 'application/json'}), stripeRoute)
 app.use(express.static('public'))
 // Routes
 app.get('/', (req: Request, res: Response) => {
   res.status(200).json({ message: 'Welcome to my E-Commerce API' })
 })
+app.use('/stripe-return', stripeRoute);
 app.use('/users', userRoute)
 app.use('/users', loginRoute)
 app.use('/collections', productRoute)
@@ -59,6 +63,7 @@ app.use('/notifications', notificationRoute)
 app.use('/checkout', checkoutRoute)
 app.use('/chat', chatRoute)
 app.use('/payment', MoMoRoute)
+app.use('/payment', paymentRoute)
 
 app.use(notFoundHandler)
 

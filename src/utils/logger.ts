@@ -1,4 +1,4 @@
-import {createLogger, transports, format} from 'winston'
+import winston, {createLogger, transports, format} from 'winston'
 
 const logger = createLogger({
     transports: [
@@ -22,6 +22,11 @@ const logger = createLogger({
             format.json()
           ),
       }),
+      new transports.Console({
+        level: 'info',
+        format: winston.format.json(),
+      }),
     ],
   });
 export default logger
+
